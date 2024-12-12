@@ -96,40 +96,40 @@ public class Controller {
     }
 
     public static String[][] getTransactionData(int user_id) {
-    try {
-        conn.connect();
-        String query = "SELECT transactions.transaction_id, users.name, books.title, books.genre, books.price " +
-                       "FROM transactions " +
-                       "INNER JOIN users ON transactions.user_id = users.user_id " +
-                       "INNER JOIN books ON transactions.book_id = books.book_id " +
-                       "WHERE transactions.user_id = ?";
-        PreparedStatement stmt = conn.con.prepareStatement(query);
-        stmt.setInt(1, user_id);
+        try {
+            conn.connect();
+            String query = "SELECT transactions.transaction_id, users.name, books.title, books.genre, books.price " +
+                    "FROM transactions " +
+                    "INNER JOIN users ON transactions.user_id = users.user_id " +
+                    "INNER JOIN books ON transactions.book_id = books.book_id " +
+                    "WHERE transactions.user_id = ?";
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, user_id);
 
-        ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-        List<String[]> resultList = new ArrayList<>();
-        while (rs.next()) {
-            String[] row = new String[5];
-            row[0] = rs.getString("transaction_id");
-            row[1] = rs.getString("name");
-            row[2] = rs.getString("title");
-            row[3] = rs.getString("genre");
-            row[4] = rs.getString("price");
-            resultList.add(row);
+            List<String[]> resultList = new ArrayList<>();
+            while (rs.next()) {
+                String[] row = new String[5];
+                row[0] = rs.getString("transaction_id");
+                row[1] = rs.getString("name");
+                row[2] = rs.getString("title");
+                row[3] = rs.getString("genre");
+                row[4] = rs.getString("price");
+                resultList.add(row);
+            }
+
+            String[][] returnData = new String[resultList.size()][5];
+            for (int i = 0; i < resultList.size(); i++) {
+                returnData[i] = resultList.get(i);
+            }
+
+            return returnData;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        String[][] returnData = new String[resultList.size()][5];
-        for (int i = 0; i < resultList.size(); i++) {
-            returnData[i] = resultList.get(i);
-        }
-
-        return returnData;
-
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return null;
     }
-    return null;
-}
 
 }
