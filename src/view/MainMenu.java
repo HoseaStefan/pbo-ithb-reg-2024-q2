@@ -17,21 +17,13 @@ public class MainMenu {
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel labelWelcome = new JLabel("Welcome, Employee!");
-        labelWelcome.setBounds(140, 100, 200, 20);
-        frame.add(labelWelcome);
+        JButton buttonLogin = new JButton("Login");
+        buttonLogin.setBounds(100, 100, 200, 30);
+        frame.add(buttonLogin);
 
-        JButton buttonRegister = new JButton("Register");
-        buttonRegister.setBounds(70, 220, 100, 30);
-        frame.add(buttonRegister);
-
-        JButton buttonViewMemberList = new JButton("View Member List");
-        buttonViewMemberList.setBounds(180, 220, 150, 30);
-        frame.add(buttonViewMemberList);
-
-        buttonRegister.addActionListener(e -> {
+        buttonLogin.addActionListener(e -> {
             frame.dispose();
-            // new FormRegister();
+            new FormLogin();
         });
 
         
