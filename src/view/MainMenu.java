@@ -12,27 +12,30 @@ public class MainMenu {
     }
 
     public void showMainMenu() {
-        Toolkit toolkit = Toolkit.getDefaultToolkit(); 
-        Dimension screenSize = toolkit.getScreenSize(); 
-
-        int screenWidth = screenSize.width; 
-        int screenHeight = screenSize.height; 
-
-        final int FRAME_WIDTH = 400; 
-        final int FRAME_HEIGHT = 300; 
-
-        int start_x = screenWidth / 2 - (FRAME_WIDTH / 2);
-        int start_y = screenHeight / 2 - (FRAME_HEIGHT / 2); 
-
         frame = new JFrame("Main Menu");
-        frame.setBounds(start_x, start_y, FRAME_WIDTH, FRAME_HEIGHT); 
+        frame.setSize(400, 300);
+        frame.setLocationRelativeTo(null);
+        frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        panel.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        JLabel labelWelcome = new JLabel("Welcome, Employee!");
+        labelWelcome.setBounds(140, 100, 200, 20);
+        frame.add(labelWelcome);
 
-        frame.add(panel);
+        JButton buttonRegister = new JButton("Register");
+        buttonRegister.setBounds(70, 220, 100, 30);
+        frame.add(buttonRegister);
+
+        JButton buttonViewMemberList = new JButton("View Member List");
+        buttonViewMemberList.setBounds(180, 220, 150, 30);
+        frame.add(buttonViewMemberList);
+
+        buttonRegister.addActionListener(e -> {
+            frame.dispose();
+            // new FormRegister();
+        });
+
+        
         frame.setVisible(true);
     }
 }
